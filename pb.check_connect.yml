@@ -1,0 +1,16 @@
+---
+- name: Get Device Facts
+  hosts: vsrx01
+  roles:
+    - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Retrieve facts from devices running Junos OS
+      juniper_junos_facts:  
+        provider: "{{ provider_info }}"
+        savedir: "{{ playbook_dir }}"
+    - name: Print version
+      debug:
+        var: junos.version
